@@ -1,15 +1,12 @@
 ﻿using Abp.Application.Navigation;
 using Abp.Localization;
 
-namespace TESTABP.Web.Startup
-{
+namespace TESTABP.Web.Startup {
     /// <summary>
     /// This class defines menus for the application.
     /// </summary>
-    public class TESTABPNavigationProvider : NavigationProvider
-    {
-        public override void SetNavigation(INavigationProviderContext context)
-        {
+    public class TESTABPNavigationProvider : NavigationProvider {
+        public override void SetNavigation(INavigationProviderContext context) {
             context.Manager.MainMenu
                 .AddItem(
                     new MenuItemDefinition(
@@ -28,8 +25,7 @@ namespace TESTABP.Web.Startup
                 );
         }
 
-        private static ILocalizableString L(string name)
-        {
+        private static ILocalizableString L(string name) {
             return new LocalizableString(name, TESTABPConsts.LocalizationSourceName);
         }
     }

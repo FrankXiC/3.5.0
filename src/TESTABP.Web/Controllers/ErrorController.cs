@@ -5,19 +5,15 @@ using Abp.Web.Mvc.Models;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TESTABP.Web.Controllers
-{
-    public class ErrorController : AbpController
-    {
+namespace TESTABP.Web.Controllers {
+    public class ErrorController : AbpController {
         private readonly IErrorInfoBuilder _errorInfoBuilder;
 
-        public ErrorController(IErrorInfoBuilder errorInfoBuilder)
-        {
+        public ErrorController(IErrorInfoBuilder errorInfoBuilder) {
             _errorInfoBuilder = errorInfoBuilder;
         }
 
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             var exHandlerFeature = HttpContext.Features.Get<IExceptionHandlerFeature>();
 
             var exception = exHandlerFeature != null

@@ -8,28 +8,23 @@ using Castle.Windsor.MsDependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace TESTABP.Tests
-{
+namespace TESTABP.Tests {
     [DependsOn(
         typeof(TESTABPApplicationModule),
         typeof(TESTABPEntityFrameworkCoreModule),
         typeof(AbpTestBaseModule)
         )]
-    public class TESTABPTestModule : AbpModule
-    {
-        public override void PreInitialize()
-        {
+    public class TESTABPTestModule : AbpModule {
+        public override void PreInitialize() {
             Configuration.UnitOfWork.IsTransactional = false; //EF Core InMemory DB does not support transactions.
             SetupInMemoryDb();
         }
 
-        public override void Initialize()
-        {
+        public override void Initialize() {
             IocManager.RegisterAssemblyByConvention(typeof(TESTABPTestModule).GetAssembly());
         }
 
-        private void SetupInMemoryDb()
-        {
+        private void SetupInMemoryDb() {
             var services = new ServiceCollection()
                 .AddEntityFrameworkInMemoryDatabase();
 

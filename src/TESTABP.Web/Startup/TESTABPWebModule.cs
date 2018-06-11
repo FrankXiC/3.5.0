@@ -7,23 +7,19 @@ using TESTABP.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace TESTABP.Web.Startup
-{
+namespace TESTABP.Web.Startup {
     [DependsOn(
-        typeof(TESTABPApplicationModule), 
-        typeof(TESTABPEntityFrameworkCoreModule), 
+        typeof(TESTABPApplicationModule),
+        typeof(TESTABPEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreModule))]
-    public class TESTABPWebModule : AbpModule
-    {
+    public class TESTABPWebModule : AbpModule {
         private readonly IConfigurationRoot _appConfiguration;
 
-        public TESTABPWebModule(IHostingEnvironment env)
-        {
+        public TESTABPWebModule(IHostingEnvironment env) {
             _appConfiguration = AppConfigurations.Get(env.ContentRootPath, env.EnvironmentName);
         }
 
-        public override void PreInitialize()
-        {
+        public override void PreInitialize() {
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(TESTABPConsts.ConnectionStringName);
 
             Configuration.Navigation.Providers.Add<TESTABPNavigationProvider>();
@@ -34,8 +30,7 @@ namespace TESTABP.Web.Startup
                 );
         }
 
-        public override void Initialize()
-        {
+        public override void Initialize() {
             IocManager.RegisterAssemblyByConvention(typeof(TESTABPWebModule).GetAssembly());
         }
     }

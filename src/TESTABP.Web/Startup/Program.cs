@@ -1,12 +1,9 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace TESTABP.Web.Startup
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
+namespace TESTABP.Web.Startup {
+    public class Program {
+        public static void Main(string[] args) {
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

@@ -5,12 +5,9 @@ using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Json;
 using Abp.Reflection.Extensions;
 
-namespace TESTABP.Localization
-{
-    public static class TESTABPLocalizationConfigurer
-    {
-        public static void Configure(ILocalizationConfiguration localizationConfiguration)
-        {
+namespace TESTABP.Localization {
+    public static class TESTABPLocalizationConfigurer {
+        public static void Configure(ILocalizationConfiguration localizationConfiguration) {
             localizationConfiguration.Languages.Add(new LanguageInfo("en", "English", "famfamfam-flags england", isDefault: true));
             localizationConfiguration.Languages.Add(new LanguageInfo("tr", "Türkçe", "famfamfam-flags tr"));
 

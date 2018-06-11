@@ -12,25 +12,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace TESTABP.Web.Tests
-{
-    public class Startup
-    {
-        public IServiceProvider ConfigureServices(IServiceCollection services)
-        {
+namespace TESTABP.Web.Tests {
+    public class Startup {
+        public IServiceProvider ConfigureServices(IServiceCollection services) {
             services.AddEntityFrameworkInMemoryDatabase();
 
             services.AddMvc();
 
             //Configure Abp and Dependency Injection
-            return services.AddAbp<TESTABPWebTestModule>(options =>
-            {
+            return services.AddAbp<TESTABPWebTestModule>(options => {
                 options.SetupTest();
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
             UseInMemoryDb(app.ApplicationServices);
 
             app.UseAbp(); //Initializes ABP framework.
@@ -39,8 +34,7 @@ namespace TESTABP.Web.Tests
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
+            app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}"
@@ -48,8 +42,7 @@ namespace TESTABP.Web.Tests
             });
         }
 
-        private void UseInMemoryDb(IServiceProvider serviceProvider)
-        {
+        private void UseInMemoryDb(IServiceProvider serviceProvider) {
             var builder = new DbContextOptionsBuilder<TESTABPDbContext>();
             builder.UseInMemoryDatabase(Guid.NewGuid().ToString()).UseInternalServiceProvider(serviceProvider);
             var options = builder.Options;
