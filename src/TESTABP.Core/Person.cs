@@ -7,8 +7,7 @@ using System.Text;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 
-namespace TESTABP
-{
+namespace TESTABP {
     [Table("AppPersons")]
     public class Person : Entity, IHasCreationTime {
         public const int MaxNameLength = 32;

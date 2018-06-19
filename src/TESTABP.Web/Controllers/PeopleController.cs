@@ -25,27 +25,23 @@ namespace TESTABP.Web.Controllers {
         }
 
         public async Task<IActionResult> PersonRegister() {
-            var output = await _personAppService.GetAll();
-
-            return View("PersonRegister", output.FirstOrDefault());
+            return View("PersonRegister");
         }
 
         public async Task<ActionResult> Register(CreatePersonInput Input) {
-            var personnew= await _personAppService.CreatePerson(Input);
-            var output =  _personAppService.GetPeopleList();
+            var personnew = await _personAppService.CreatePerson(Input);
+            var output = _personAppService.GetPeopleList();
             output.Add(personnew);
-            output.OrderByDescending(t=>t.CreationTime);
-            return View("PeopleList",output);
+            output.OrderByDescending(t => t.CreationTime);
+            return View("PeopleList", output);
         }
 
-        public async Task<IActionResult> EditPersonById(Person inputPerson)
-        {
+        public async Task<IActionResult> EditPersonById(Person inputPerson) {
             var person = await _personAppService.EditPersonById(inputPerson);
             return View("PersonEdit", person);
         }
 
-        public async Task<IActionResult> DeletePersonById(int id)
-        {
+        public async Task<IActionResult> DeletePersonById(int id) {
             var personDelete = await _personAppService.DeletePersonById(id);
             var output = _personAppService.GetPeopleList();
             output.Remove(personDelete);

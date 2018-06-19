@@ -22,20 +22,17 @@ namespace TESTABP {
             return person;
         }
 
-        public  List<Person> GetPeopleList()
-        {
-            var people = _personRepository.GetAll().OrderByDescending(t=>t.CreationTime).ToList();
+        public List<Person> GetPeopleList() {
+            var people = _personRepository.GetAll().OrderByDescending(t => t.CreationTime).ToList();
             return people;
         }
 
-        public async Task<Person> GetPersonById(int id)
-        {
+        public async Task<Person> GetPersonById(int id) {
             var person = await _personRepository.GetAsync(id);
             return person;
         }
 
-        public async Task<Person> EditPersonById(Person input)
-        {
+        public async Task<Person> EditPersonById(Person input) {
             var person = await _personRepository.UpdateAsync(input);
             return person;
         }
@@ -46,12 +43,10 @@ namespace TESTABP {
             return person;
         }
 
-        public async Task<Person> DeletePersonById(int id)
-        {
-            
+        public async Task<Person> DeletePersonById(int id) {
+
             var person = await _personRepository.GetAsync(id);
-            if (person!=null)
-            {
+            if (person != null) {
                 await _personRepository.DeleteAsync(id);
             }
             return person;

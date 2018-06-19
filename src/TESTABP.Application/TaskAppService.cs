@@ -7,8 +7,7 @@ using Abp.Linq.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace TESTABP {
-    public class TaskAppService : TESTABPAppServiceBase, ITaskAppService
-    {
+    public class TaskAppService : TESTABPAppServiceBase, ITaskAppService {
         private readonly IRepository<Task> _taskRepository;
 
         public TaskAppService(IRepository<Task> taskRepository) {
@@ -18,7 +17,6 @@ namespace TESTABP {
         public async Task<ListResultDto<TaskListDto>> GetAll(GetAllTasksInput input) {
             var tasks = await _taskRepository
                 .GetAll()
-                //.Include(t => t.AssignedPerson)
                 .WhereIf(input.State.HasValue, t => t.State == input.State.Value)
                 .OrderByDescending(t => t.CreationTime)
                 .ToListAsync();
@@ -28,8 +26,7 @@ namespace TESTABP {
             );
         }
 
-        public async Task<TaskListDto> AddTask(CreateTaskInput input)
-        {
+        public async Task<TaskListDto> AddTask(CreateTaskInput input) {
             var task = ObjectMapper.Map<Task>(input);
             var taskId = await _taskRepository.InsertAndGetIdAsync(task);
 
@@ -37,8 +34,7 @@ namespace TESTABP {
         }
 
 
-        public async System.Threading.Tasks.Task CreateAsync(CreateTaskInput input)
-        {
+        public async System.Threading.Tasks.Task CreateAsync(CreateTaskInput input) {
             var task = ObjectMapper.Map<Task>(input);
             await _taskRepository.InsertAsync(task);
         }

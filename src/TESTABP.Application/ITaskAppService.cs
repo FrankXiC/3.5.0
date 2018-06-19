@@ -7,8 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TESTABP
-{
+namespace TESTABP {
     public interface ITaskAppService : IApplicationService {
         Task<ListResultDto<TaskListDto>> GetAll(GetAllTasksInput input);
         System.Threading.Tasks.Task CreateAsync(CreateTaskInput input);
