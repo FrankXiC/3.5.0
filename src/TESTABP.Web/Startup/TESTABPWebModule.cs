@@ -1,5 +1,6 @@
 ﻿using Abp.AspNetCore;
 using Abp.AspNetCore.Configuration;
+using Abp.Localization;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using TESTABP.Configuration;
@@ -23,7 +24,6 @@ namespace TESTABP.Web.Startup {
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(TESTABPConsts.ConnectionStringName);
 
             Configuration.Navigation.Providers.Add<TESTABPNavigationProvider>();
-
             Configuration.Modules.AbpAspNetCore()
                 .CreateControllersForAppServices(
                     typeof(TESTABPApplicationModule).GetAssembly()

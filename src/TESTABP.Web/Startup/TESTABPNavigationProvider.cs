@@ -12,7 +12,7 @@ namespace TESTABP.Web.Startup {
                     new MenuItemDefinition(
                         PageNames.Home,
                         L("HomePage"),
-                        url: "",
+                        url: "Home/Index",
                         icon: "fa fa-home"
                         )
                 ).AddItem(
@@ -22,6 +22,20 @@ namespace TESTABP.Web.Startup {
                         url: "Home/About",
                         icon: "fa fa-info"
                         )
+                ).AddItem(
+                new MenuItemDefinition(
+                    "TaskList",
+                    L("TaskList"),
+                    url: "Tasks/TaskList",
+                    icon: "fa fa-tasks"
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Person,
+                        L("Person"),
+                        url: "People/PeopleList",
+                        icon: "fa fa-tasks"
+                    )
                 );
         }
 
