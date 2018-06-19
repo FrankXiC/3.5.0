@@ -75,12 +75,12 @@ namespace TESTABP.Web.Tests {
             return result;
         }
 
-        protected async Task UsingDbContextAsync(Func<TESTABPDbContext, Task> action) {
-            using (var context = IocManager.Resolve<TESTABPDbContext>()) {
-                await action(context);
-                await context.SaveChangesAsync(true);
-            }
-        }
+        //protected async Task UsingDbContextAsync(Func<TESTABPDbContext, Task> action) {
+        //    using (var context = IocManager.Resolve<TESTABPDbContext>()) {
+        //        await action(context);
+        //        await context.SaveChangesAsync(true);
+        //    }
+        //}
 
         protected async Task<T> UsingDbContextAsync<T>(Func<TESTABPDbContext, Task<T>> func) {
             T result;

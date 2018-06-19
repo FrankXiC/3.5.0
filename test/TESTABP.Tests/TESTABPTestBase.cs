@@ -28,12 +28,12 @@ namespace TESTABP.Tests {
             return result;
         }
 
-        protected virtual async Task UsingDbContextAsync(Func<TESTABPDbContext, Task> action) {
-            using (var context = LocalIocManager.Resolve<TESTABPDbContext>()) {
-                await action(context);
-                await context.SaveChangesAsync(true);
-            }
-        }
+        //protected virtual async Task UsingDbContextAsync(Func<TESTABPDbContext, Task> action) {
+        //    using (var context = LocalIocManager.Resolve<TESTABPDbContext>()) {
+        //        await action(context);
+        //        await context.SaveChangesAsync(true);
+        //    }
+        //}
 
         protected virtual async Task<T> UsingDbContextAsync<T>(Func<TESTABPDbContext, Task<T>> func) {
             T result;
