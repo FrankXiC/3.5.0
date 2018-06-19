@@ -9,5 +9,9 @@ namespace TESTABP.Web.Controllers {
         public ActionResult About() {
             return View();
         }
+
+        public ActionResult TaskList() {
+            return View();
+        }
     }
 }
