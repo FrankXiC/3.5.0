@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Net.Sockets;
 using System.Text;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
@@ -16,6 +17,11 @@ namespace TESTABP
         [MaxLength(MaxNameLength)]
         public string Name { get; set; }
         public DateTime CreationTime { get; set; }
+        public string Sex { get; set; }
+        public string Address { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+
         public Person() {
 
         }

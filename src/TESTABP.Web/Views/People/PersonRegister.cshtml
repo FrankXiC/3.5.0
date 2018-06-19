@@ -1,26 +1,21 @@
 ﻿@model TESTABP.Person
 
 @{
-    ViewData["Title"] = "PersonEdit";
+    ViewData["Title"] = "PersonRegister";
 }
 
-<h2>PersonEdit</h2>
+<h2>PersonRegister</h2>
 
 <h4>Person</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditPersonById">
+        <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group" style="display: none">
-                <label asp-for="CreationTime" class="control-label"></label>
-                <input asp-for="CreationTime" class="form-control" />
-                <span asp-validation-for="CreationTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Sex" class="control-label"></label>
@@ -42,9 +37,8 @@
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
