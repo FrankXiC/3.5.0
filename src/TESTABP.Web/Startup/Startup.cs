@@ -4,6 +4,8 @@ using Abp.Castle.Logging.Log4Net;
 using Abp.EntityFrameworkCore;
 using TESTABP.EntityFrameworkCore;
 using Castle.Facilities.Logging;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +23,11 @@ namespace TESTABP.Web.Startup {
             services.AddMvc(options => {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                    {
+                    }
+                    );
 
             //Configure Abp and Dependency Injection
             return services.AddAbp<TESTABPWebModule>(options => {
@@ -43,6 +50,8 @@ namespace TESTABP.Web.Startup {
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes => {
                 routes.MapRoute(

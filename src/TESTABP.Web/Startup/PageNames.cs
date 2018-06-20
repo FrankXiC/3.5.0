@@ -4,5 +4,6 @@
         public const string About = "About";
         public const string Menu = "Menu";
         public const string Person = "Person";
+        public const string Course = "Course";
     }
 }

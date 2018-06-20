@@ -28,7 +28,7 @@ namespace TESTABP.Web.Controllers {
             return View("PersonRegister");
         }
 
-        public async Task<ActionResult> Register(CreatePersonInput Input) {
+        public async Task<IActionResult> Register(CreatePersonInput Input) {
             var personnew = await _personAppService.CreatePerson(Input);
             var output = _personAppService.GetPeopleList();
             output.Add(personnew);

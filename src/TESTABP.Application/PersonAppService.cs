@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -10,10 +11,15 @@ using Microsoft.EntityFrameworkCore;
 namespace TESTABP {
     public class PersonAppService : TESTABPAppServiceBase, IPersonAppService {
 
+        //private readonly IPersonRepository _personRepository;
+
+        //public PersonAppService(IPersonRepository personRepository) {
+        //    _personRepository = personRepository;
+        //}
         private readonly IRepository<Person> _personRepository;
 
-        public PersonAppService(IRepository<Person> taskRepository) {
-            _personRepository = taskRepository;
+        public PersonAppService(IRepository<Person> personRepository) {
+            _personRepository = personRepository;
         }
 
         public async Task<List<Person>> GetAll() {
@@ -29,6 +35,12 @@ namespace TESTABP {
 
         public async Task<Person> GetPersonById(int id) {
             var person = await _personRepository.GetAsync(id);
+            return person;
+        }
+
+        public Person GetPersonByUserId(string userid) {
+            var personlist =  _personRepository.GetAll();
+            var person = personlist.Single(t => t.UserId == userid);
             return person;
         }
 

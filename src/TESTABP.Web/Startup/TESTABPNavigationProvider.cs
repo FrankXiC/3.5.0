@@ -36,6 +36,13 @@ namespace TESTABP.Web.Startup {
                         url: "People/PeopleList",
                         icon: "fa fa-tasks"
                     )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Course,
+                        L("Course"),
+                        url: "Courses/CourseList",
+                        icon: "fa fa-tasks"
+                    )
                 );
         }
 

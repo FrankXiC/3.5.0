@@ -12,9 +12,10 @@ using TESTABP.EntityFrameworkCore;
 namespace TESTABP.Migrations
 {
     [DbContext(typeof(TESTABPDbContext))]
-    partial class TESTABPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180620062044_PersonUserId")]
+    partial class PersonUserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
