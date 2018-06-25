@@ -14,16 +14,22 @@ namespace TESTABP.Web.Controllers
             _taskAppService = taskAppService;
         }
 
-        public async Task<ActionResult> TaskList(GetAllTasksInput input) {
-            var output = await _taskAppService.GetAll(input);
-            var model = new IndexViewModel(output.Items)
+        public async Task<IActionResult> TaskList(GetAllTasksInput input) {
+            if (!HttpContext.User.Identity.IsAuthenticated) {
+                return View("../Home/Login");
+            }
+            else
             {
-                SelectedTaskState = input.State
-            };
-            return View(model);
+                var output = await _taskAppService.GetAll(input);
+                var model = new IndexViewModel(output.Items)
+                {
+                    SelectedTaskState = input.State
+                };
+                return View(model);
+            }
         }
 
-        public async Task<ActionResult> Register(CreateTaskInput Input)
+        public async Task<IActionResult> Register(CreateTaskInput Input)
         {
             var output = await _taskAppService.AddTask(Input);
             

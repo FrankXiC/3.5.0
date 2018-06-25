@@ -16,8 +16,7 @@ namespace TESTABP.Web.Controllers
 
         public async Task<IActionResult> CourseList()
         {
-            var output = await _courseAppService.GetAll();
-            return View("CourseList",output);
+            return !HttpContext.User.Identity.IsAuthenticated ? View("../Home/Login") : View();
         }
         public async Task<IActionResult> Register(Course Input) {
             var coursenew = await _courseAppService.CreateCourse(Input);

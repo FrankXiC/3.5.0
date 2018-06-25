@@ -13,22 +13,16 @@ namespace TESTABP.Web.Controllers {
         public HomeController(IPersonAppService personAppService) {
             _personAppService = personAppService;
         }
-        public ActionResult Index() {
-            if (HttpContext.Request.Cookies["User"]==null)
-            {
-                return View("Login");
-            }
-            else
-            {
-                return View();
-            }
+        public ActionResult Index()
+        {
+            return !HttpContext.User.Identity.IsAuthenticated ? View("../Home/Login") : View();
         }
       
         public async Task<IActionResult> Login(Person person) {
             var personlogin = _personAppService.GetPersonByUserId(person.UserId);
             if (personlogin==null)
             {
-                return View("Login");
+                return View("../Home/Login");
             }
             else
             {
@@ -43,12 +37,16 @@ namespace TESTABP.Web.Controllers {
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
-                return View("Index");
+                return View("../Home/Index");
             }
         }
 
         public ActionResult About() {
             return View();
+        }
+        public async Task<IActionResult> Logout() {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index","Home");
         }
 
         public ActionResult TaskList() {

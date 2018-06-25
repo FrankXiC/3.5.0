@@ -23,11 +23,13 @@ namespace TESTABP.Web.Startup {
             services.AddMvc(options => {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
+
+            // 添加 Cookie 服务
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                    {
-                    }
-                    );
+                .AddCookie(options => {
+                    options.LoginPath = "/Home/LogIn";
+                    //options.LogoutPath = "/Account/LogOff";
+                });
 
             //Configure Abp and Dependency Injection
             return services.AddAbp<TESTABPWebModule>(options => {
