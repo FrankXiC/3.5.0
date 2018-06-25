@@ -43,6 +43,13 @@ namespace TESTABP.Web.Startup {
                         url: "Courses/CourseList",
                         icon: "fa fa-tasks"
                     )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        "LogOut",
+                        L("LogOut"),
+                        url: "Home/LogOut",
+                        icon: "fa fa-info"
+                    )
                 );
         }
 
