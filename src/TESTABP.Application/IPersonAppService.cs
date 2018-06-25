@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace TESTABP {
     public interface IPersonAppService {
         Task<List<Person>> GetAll();
-        Task<Person> CreatePerson(CreatePersonInput input);
+        Task<Person> CreatePerson(Person input);
         List<Person> GetPeopleList();
         Task<Person> GetPersonById(int Id);
         Task<Person> EditPersonById(Person input);

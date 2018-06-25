@@ -49,7 +49,7 @@ namespace TESTABP {
             return person;
         }
 
-        public async Task<Person> CreatePerson(CreatePersonInput input) {
+        public async Task<Person> CreatePerson(Person input) {
             var person = ObjectMapper.Map<Person>(input);
             await _personRepository.InsertAsync(person);
             return person;

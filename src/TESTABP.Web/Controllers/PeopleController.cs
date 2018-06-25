@@ -13,9 +13,7 @@ namespace TESTABP.Web.Controllers {
         }
 
         public async Task<IActionResult> PeopleList() {
-            var output = await _personAppService.GetAll();
-
-            return View("PeopleList", output);
+            return !HttpContext.User.Identity.IsAuthenticated ? View("../Home/Login") : View();
         }
 
         public async Task<IActionResult> GetPersonById(int Id) {
@@ -28,7 +26,7 @@ namespace TESTABP.Web.Controllers {
             return View("PersonRegister");
         }
 
-        public async Task<IActionResult> Register(CreatePersonInput Input) {
+        public async Task<IActionResult> Register(Person Input) {
             var personnew = await _personAppService.CreatePerson(Input);
             var output = _personAppService.GetPeopleList();
             output.Add(personnew);
