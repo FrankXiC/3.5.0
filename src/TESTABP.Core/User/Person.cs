@@ -5,13 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Net.Sockets;
 using System.Text;
 using System.Xml;
-using Abp.Authorization.Users;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 
 namespace TESTABP {
     [Table("AppPersons")]
-    public class Person :AbpUser<Person>, IHasCreationTime {
+    public class Person : Entity, IHasCreationTime {
         public const int MaxNameLength = 32;
 
         [Required]
