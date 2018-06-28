@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TESTABP.SelectCourseInput>
+
+    @{
+    ViewData["Title"] = "SelectCourse";
+    ViewBag.ActiveMenu = "SelectCourse";
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>SelectCourseList</title>
+    </head>
+    <body>
+        <p>
+            <a asp-action="SelectCourseCreate">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PersonName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourseId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourseName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Teacher)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Score)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PersonName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Teacher)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Score)
+                    </td>
+                    <td><a asp-action="DeleteSelectedCourse" asp-route-id="@item.Id">Delete</a></td>
+                </tr>
+}
+            </tbody>
+        </table>
+    </body>
+</html>

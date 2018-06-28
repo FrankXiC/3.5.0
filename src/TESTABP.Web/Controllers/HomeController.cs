@@ -15,11 +15,19 @@ namespace TESTABP.Web.Controllers {
         }
         public ActionResult Index()
         {
-            return !HttpContext.User.Identity.IsAuthenticated ? View("../Home/Login") : View();
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("../Home/Login");
+                ;
+            }
+            else
+            {
+                return View();
+            }
         }
       
         public async Task<IActionResult> Login(Person person) {
-            var personlogin = _personAppService.GetPersonByUserId(person.UserId);
+            var personlogin = await _personAppService.GetPersonByUserId(person.UserId);
             if (personlogin==null)
             {
                 return View("../Home/Login");
@@ -44,13 +52,10 @@ namespace TESTABP.Web.Controllers {
         public ActionResult About() {
             return View();
         }
+
         public async Task<IActionResult> Logout() {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index","Home");
-        }
-
-        public ActionResult TaskList() {
-            return View();
         }
     }
 }

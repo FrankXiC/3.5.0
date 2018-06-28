@@ -1,0 +1,56 @@
+﻿@using TESTABP
+@using TESTABP.Web.Startup
+@using Task = System.Threading.Tasks.Task
+@model TESTABP.SelectCourse
+
+@{
+    ViewData["Title"] = "SelectCourse";
+    ViewBag.ActiveMenu = "SelectCourse";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SelectCourseCreate</title>
+</head>
+<body>
+
+    <h4>SelectCourseCreate</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">@ViewData["person"]</label>
+                    <input type="hidden" asp-for="PersonId" value="@ViewData["personId"]" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="CourseId" class="control-label"></label>
+                    <select asp-for="CourseId">
+                        @foreach (var Course in (List<Course>)ViewData["courseList"]) {
+                            <option asp-for="CourseId" value="@Course.CourseId">@Course.Name/@Course.Teacher</option>
+                        }
+                    </select>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="CourseId" class="control-label"></label>
+                        <input asp-for="CourseId" class="form-control" />
+                        <span asp-validation-for="CourseId" class="text-danger"></span>
+                    </div>*@
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="SelectCourseList">Back to List</a>
+    </div>
+
+</body>
+</html>

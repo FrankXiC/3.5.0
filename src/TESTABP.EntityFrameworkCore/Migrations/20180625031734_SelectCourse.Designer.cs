@@ -12,9 +12,10 @@ using TESTABP.EntityFrameworkCore;
 namespace TESTABP.Migrations
 {
     [DbContext(typeof(TESTABPDbContext))]
-    partial class TESTABPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180625031734_SelectCourse")]
+    partial class SelectCourse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,8 +26,6 @@ namespace TESTABP.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CourseId");
 
                     b.Property<DateTime>("CreationTime");
 

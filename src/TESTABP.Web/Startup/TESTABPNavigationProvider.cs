@@ -45,6 +45,13 @@ namespace TESTABP.Web.Startup {
                     )
                 ).AddItem(
                     new MenuItemDefinition(
+                        "SelectCourse",
+                        L("SelectCourse"),
+                        url: "SelectCourse/SelectCourseList",
+                        icon: "fa fa-tasks"
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
                         "LogOut",
                         L("LogOut"),
                         url: "Home/LogOut",

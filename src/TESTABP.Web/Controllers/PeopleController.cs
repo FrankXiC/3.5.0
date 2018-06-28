@@ -13,7 +13,13 @@ namespace TESTABP.Web.Controllers {
         }
 
         public async Task<IActionResult> PeopleList() {
-            return !HttpContext.User.Identity.IsAuthenticated ? View("../Home/Login") : View();
+            if (!HttpContext.User.Identity.IsAuthenticated) {
+                return View("../Home/Login");
+            }
+            else {
+                var output = await _personAppService.GetAll();
+                return View("PeopleList", output);
+            }
         }
 
         public async Task<IActionResult> GetPersonById(int Id) {

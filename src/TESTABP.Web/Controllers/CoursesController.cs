@@ -16,17 +16,25 @@ namespace TESTABP.Web.Controllers
 
         public async Task<IActionResult> CourseList()
         {
-            return !HttpContext.User.Identity.IsAuthenticated ? View("../Home/Login") : View();
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("../Home/Login");
+            }
+            else
+            {
+                var output = await _courseAppService.GetAll();
+                return View("CourseList", output);
+            }
         }
-        public async Task<IActionResult> Register(Course Input) {
-            var coursenew = await _courseAppService.CreateCourse(Input);
-            var output = _courseAppService.GetCoursesList();
+        public async Task<IActionResult> Register(CourseCreateInput inputCourse) {
+            var coursenew = await _courseAppService.CreateCourse(inputCourse);
+            var output = await _courseAppService.GetCoursesList();
             output.Add(coursenew);
             output.OrderByDescending(t => t.CreationTime);
             return View("CourseList", output);
         }
 
-        public async Task<IActionResult> GetPersonById(int Id) {
+        public async Task<IActionResult> GetCourseById(int Id) {
             var output = await _courseAppService.GetCourseById(Id);
 
             return View("CourseEdit", output);
@@ -36,14 +44,14 @@ namespace TESTABP.Web.Controllers
             return View("CourseCreate");
         }
 
-        public async Task<IActionResult> EditPersonById(Course inputPerson) {
-            var course = await _courseAppService.EditCourseById(inputPerson);
+        public async Task<IActionResult> EditCourseById(CourseCreateInput inputCourse) {
+            var course = await _courseAppService.EditCourseById(inputCourse);
             return View("CourseEdit", course);
         }
 
-        public async Task<IActionResult> DeletePersonById(int id) {
+        public async Task<IActionResult> DeleteCourseById(int id) {
             var courseDelete = await _courseAppService.DeleteCourseById(id);
-            var output = _courseAppService.GetCoursesList();
+            var output = await _courseAppService.GetCoursesList();
             output.Remove(courseDelete);
             return View("CourseList", output);
         }

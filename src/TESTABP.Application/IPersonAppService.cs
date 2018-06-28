@@ -10,7 +10,7 @@ namespace TESTABP {
         List<Person> GetPeopleList();
         Task<Person> GetPersonById(int Id);
         Task<Person> EditPersonById(Person input);
-        Person GetPersonByUserId(string userid);
+        Task<Person> GetPersonByUserId(string userid);
         Task<Person> DeletePersonById(int id);
     }
     public class CreatePersonInput {

@@ -15,6 +15,9 @@ namespace TESTABP
         [Required]
         [MaxLength(MaxNameLength)]
         public string Name { get; set; }
+
+        public string CourseId { get; set; }
+
         public DateTime CreationTime { get; set; }
      
         public string Teacher { get; set; }
@@ -24,10 +27,8 @@ namespace TESTABP
 
         }
 
-        public Course(string name, string teacher, int score) {
-            Name = name;
-            Teacher = teacher;
-            Score = score;
+        public Course(string courseId) {
+            CourseId = courseId;
         }
     }
 }

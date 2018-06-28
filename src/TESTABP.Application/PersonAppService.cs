@@ -38,8 +38,8 @@ namespace TESTABP {
             return person;
         }
 
-        public Person GetPersonByUserId(string userid) {
-            var personlist =  _personRepository.GetAll();
+        public async Task<Person> GetPersonByUserId(string userid) {
+            var personlist = await _personRepository.GetAll().ToListAsync();
             var person = personlist.Single(t => t.UserId == userid);
             return person;
         }

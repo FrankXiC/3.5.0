@@ -8,6 +8,7 @@ namespace TESTABP.EntityFrameworkCore {
         public DbSet<Person> People { get; set; }
         public DbSet<Course> Courses { get; set; }
 
+        public DbSet<SelectCourse> SelectCourse { get; set; }
         public TESTABPDbContext(DbContextOptions<TESTABPDbContext> options)
             : base(options) {
 

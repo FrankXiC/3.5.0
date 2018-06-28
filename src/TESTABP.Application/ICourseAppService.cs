@@ -6,10 +6,10 @@ namespace TESTABP
     public interface ICourseAppService
     {
         Task<List<Course>> GetAll();
-        List<Course> GetCoursesList();
+        Task<List<Course>> GetCoursesList();
         Task<Course> GetCourseById(int id);
-        Task<Course> EditCourseById(Course input);
-        Task<Course> CreateCourse(Course input);
+        Task<Course> EditCourseById(CourseCreateInput input);
+        Task<Course> CreateCourse(CourseCreateInput input);
         Task<Course> DeleteCourseById(int id);
     }
 }
